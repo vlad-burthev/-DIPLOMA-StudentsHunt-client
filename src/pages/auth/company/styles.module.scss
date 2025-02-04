@@ -1,0 +1,49 @@
+.input-wrapper {
+  position: relative;
+  padding-bottom: 20px;
+
+  & > label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  & > input {
+    display: block;
+    width: 100%;
+  }
+
+  & > p[role="alert"] {
+    position: absolute;
+    bottom: 0;
+    color: $error;
+  }
+}
+
+.step-btns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.next-btn {
+  background-color: $blue;
+  padding: 10px 0;
+  color: $white;
+  font-size: $text-l;
+  border-radius: 4px;
+  box-sizing: border-box;
+
+  &:disabled {
+    background-color: $blue-light;
+  }
+}
+
+.back-btn {
+  text-align: center;
+  padding: 10px 0;
+  background-color: $orange-dark;
+  color: $white;
+  font-size: $text-l;
+  border-radius: 4px;
+}
