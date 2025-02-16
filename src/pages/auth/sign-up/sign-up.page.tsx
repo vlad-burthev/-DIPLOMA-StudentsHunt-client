@@ -22,7 +22,6 @@ const SignUpPage: FC<Props> = () => {
     trigger,
     reset,
   } = useForm<ISignUpCompanyData>({
-    mode: "onChange",
     defaultValues: {
       title: "",
       phone: "",
@@ -57,7 +56,6 @@ const SignUpPage: FC<Props> = () => {
 
     // Отправляем FormData на сервер
     signUp(formData);
-    console.log(data, error, isLoading, isError, isSuccess);
   };
   const onNextStep = (path: string) => {
     trigger();
@@ -72,23 +70,23 @@ const SignUpPage: FC<Props> = () => {
     }
   }, [isSuccess, reset]);
 
+  useEffect(() => {
+    navigate(publicRoutes.auth.signUpDetailsPath);
+  }, []);
+
   return (
     <div className={styles["sign-up"]}>
-      {isError &&
-        error &&
-        ((error as ResponseError)?.data?.errors ? (
-          (error as ResponseError)?.data?.errors!.map(
-            ({ msg }: { msg: string }, index: number) => (
-              <div key={index} className={styles["error-toast"]}>
-                {msg}
-              </div>
-            )
-          )
+      {isError && error ? (
+        (error as ResponseError)?.data?.errors?.[0] ? (
+          <div className={styles["error-toast"]}>
+            {(error as ResponseError)?.data?.errors?.[0]?.msg}
+          </div>
         ) : (
           <div className={styles["error-toast"]}>
-            {(error as ResponseError)?.data?.message}
+            {(error as ResponseError)?.data?.message?.[0]}
           </div>
-        ))}
+        )
+      ) : null}
 
       <div className={styles["container"]}>
         <div className={styles["content"]}>

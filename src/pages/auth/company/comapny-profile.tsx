@@ -30,6 +30,7 @@ const CompanyProfile: FC<Props> = ({ register, errors, isLoading }) => {
               message: "Назва компанії повинна бути не довше 60 символів",
             },
           })}
+          isError={Boolean(errors.email)}
           aria-invalid={errors.email ? "true" : "false"}
           type="text"
         />
@@ -46,12 +47,25 @@ const CompanyProfile: FC<Props> = ({ register, errors, isLoading }) => {
               message: "Пароль повинний містити мінімум 6 символи",
             },
           })}
+          isError={Boolean(errors.password)}
           aria-invalid={errors.password ? "true" : "false"}
           type="text"
         />
         {errors.password && (
           <p role="alert">{String(errors.password.message)}</p>
         )}
+      </div>
+
+      <div className={styles["input-wrapper"]}>
+        <label htmlFor="">Лого компанії</label>
+        <input
+          {...register("photo", { required: "Лого обов'язкове" })}
+          type="file"
+          className={styles["input__file"]}
+          accept="image/*"
+          hidden
+        />
+        {errors.photo && <p role="alert">{String(errors.photo.message)}</p>}
       </div>
 
       <div className={styles["step-btns"]}>

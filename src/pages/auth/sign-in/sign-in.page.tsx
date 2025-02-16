@@ -1,8 +1,10 @@
-import type { FC } from "react";
+import { useEffect, type FC } from "react";
 import { useForm } from "react-hook-form";
 import { useSignInCompanyMutation } from "../../../api/authApi";
 import { DefaultInput } from "../../../ui-kit/ui-input";
 import styles from "../sign-up/styles.module.scss";
+import { useNavigate } from "react-router-dom";
+import { publicRoutes } from "../../../router/routes";
 
 const SignInPage: FC = () => {
   const {
@@ -12,11 +14,18 @@ const SignInPage: FC = () => {
   } = useForm({
     mode: "onChange",
   });
-  const [signIn, { data, isError, error, isSuccess, isLoading }] =
-    useSignInCompanyMutation();
-  const onSubmit = (signInData: any) => {
-    signIn(signInData);
+  const navigate = useNavigate();
+  const [signIn, { isSuccess, isLoading }] = useSignInCompanyMutation();
+  const onSubmit = async (signInData: any) => {
+    await signIn(signInData).unwrap();
+    navigate(publicRoutes.homeRoute);
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      navigate(publicRoutes.homeRoute);
+    }
+  }, [isSuccess]);
 
   return (
     <div>

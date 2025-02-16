@@ -59,10 +59,13 @@ const CompanyDetails: FC<Props> = ({
               message: "Формат номера: +380123456789",
             },
           })}
+          ariaInvalid={errors.phone && watch("phone").length < 1 ? true : false}
           value={watch("phone")}
           onChange={(e) => setValue("phone", e.target.value)}
         />
-        {errors.phone && <p role="alert">{String(errors.phone.message)}</p>}
+        {errors.phone && watch("phone").length < 1 && (
+          <p role="alert">{String(errors.phone.message)}</p>
+        )}
       </div>
 
       <div className={styles["input-wrapper"]}>
@@ -85,18 +88,6 @@ const CompanyDetails: FC<Props> = ({
           }}
         />
         {errors.egrpou && <p role="alert">{String(errors.egrpou.message)}</p>}
-      </div>
-
-      <div className={styles["input-wrapper"]}>
-        <label htmlFor="">Лого компанії</label>
-        <input
-          {...register("photo", { required: "Лого обов'язкове" })}
-          type="file"
-          className={styles["input__file"]}
-          accept="image/*"
-          hidden
-        />
-        {errors.photo && <p role="alert">{String(errors.photo.message)}</p>}
       </div>
 
       <button type="button" className={styles["next-btn"]} onClick={onNextStep}>

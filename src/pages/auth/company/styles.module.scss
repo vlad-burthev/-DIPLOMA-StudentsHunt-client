@@ -16,6 +16,10 @@
     bottom: 0;
     color: $error;
   }
+
+  & > input[aria-invalid="true"] {
+    outline: 1px solid $error;
+  }
 }
 
 .step-btns {

@@ -31,6 +31,7 @@ const CompanyDescription: FC<Props> = ({ register, errors, onNextStep }) => {
               message: "Опис компанії повинний бути не довше 1000 символів",
             },
           })}
+          isError={Boolean(errors.description)}
           aria-invalid={errors.description ? "true" : "false"}
         />
         {errors.description && (
