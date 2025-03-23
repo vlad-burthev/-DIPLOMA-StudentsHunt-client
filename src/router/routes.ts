@@ -14,3 +14,12 @@ export const publicRoutes = {
     signUpProfilePath: "/auth/sign-up/profile",
   },
 };
+
+export const companyRoutes = {
+  index: "/my-company",
+  recruiters: {
+    index: "/my-company/recruiters/*",
+    administrationRecruiterRoute: "/administration",
+    administrationRecruiterPath: "/my-company/recruiters/administration",
+  },
+};

@@ -33,15 +33,13 @@ const SignUpPage: FC<Props> = () => {
     },
   });
 
-  const [signUp, { data, error, isLoading, isError, isSuccess }] =
+  const [signUp, { error, isLoading, isError, isSuccess }] =
     useSignUpCompanyMutation();
 
   const onSubmit = (signUpData: any) => {
     console.log(signUpData);
-    // Создаем новый объект FormData
     const formData = new FormData();
 
-    // Добавляем текстовые данные в FormData
     formData.append("title", signUpData.title);
     formData.append("phone", signUpData.phone);
     formData.append("egrpou", signUpData.egrpou);
@@ -49,14 +47,13 @@ const SignUpPage: FC<Props> = () => {
     formData.append("email", signUpData.email);
     formData.append("password", signUpData.password);
 
-    // Добавляем файл в FormData
     if (signUpData.photo && signUpData.photo.length > 0) {
       formData.append("photo", signUpData.photo[0]);
     }
 
-    // Отправляем FormData на сервер
     signUp(formData);
   };
+
   const onNextStep = (path: string) => {
     trigger();
     if (!isValid) return;

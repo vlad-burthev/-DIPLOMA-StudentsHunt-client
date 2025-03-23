@@ -16,7 +16,7 @@ export const authApi = createApi({
     }),
     signInCompany: build.mutation({
       query: (signInData) => ({
-        url: "company/login",
+        url: "sign-in",
         body: signInData,
         method: "POST",
       }),

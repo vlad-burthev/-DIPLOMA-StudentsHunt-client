@@ -17,3 +17,12 @@ export interface ResponseError {
   };
   status: number;
 }
+
+export interface recruiterListItem {
+  id: string;
+  email: string;
+  name: string;
+  surname: string;
+  photo: string;
+  date: string;
+}

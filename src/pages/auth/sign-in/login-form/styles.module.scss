@@ -1,0 +1,19 @@
+.form {
+  margin-top: 20px;
+}
+
+.sign-in__btn {
+  width: 100%;
+  background-color: $blue;
+  padding: 10px 0;
+  color: $white;
+  font-size: $text-l;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: 0.2s;
+  margin-top: 20px;
+
+  &:hover {
+    background-color: $blue-dark;
+  }
+}
